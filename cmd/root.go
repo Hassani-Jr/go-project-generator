@@ -7,9 +7,10 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "Generate",
-	Short: "Command used to quickly generate go commands",
-	Long:  "This is a command used to auto generate barebones Go programs",
+	Use:     "Generate",
+	Aliases: []string{"-g", "-gen"},
+	Short:   "Command used to quickly generate go commands",
+	Long:    "This is a command used to auto generate barebones Go programs",
 	Run: func(cmd *cobra.Command, args []string) {
 
 	},
