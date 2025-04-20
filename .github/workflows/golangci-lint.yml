@@ -8,8 +8,6 @@ on:
 
 permissions:
   contents: read
-  # Optional: allow read access to pull request. Use with `only-new-issues` option.
-  # pull-requests: read
 
 jobs:
   golangci:
@@ -20,7 +18,12 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: stable
+          cache: true  # Enable Go module caching
+      - name: Install dependencies
+        run: go mod download
       - name: golangci-lint
         uses: golangci/golangci-lint-action@v7
         with:
-          version: v2.0
+          # Use a specific patch version rather than just v2.0
+          version: v2.1.2
+          args: --timeout=5m
