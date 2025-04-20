@@ -19,6 +19,8 @@ jobs:
         with:
           go-version: stable
           cache: true  # Enable Go module caching
+      - name: Scan repo and update modules
+        run: go mod tidy
       - name: Install dependencies
         run: go mod download
       - name: golangci-lint
