@@ -444,6 +444,7 @@ protoc --go_out=. --go_opt=paths=source_relative \
 echo "Proto files generated successfully"
 `
 	if err := g.createFile("scripts/proto-gen.sh", protoGenScript); err != nil {
+		os.Chmod(filepath.Join(g.Config.ProjectPath, "scripts/proto-gen.sh"), 0755)
 		return err
 	}
 
@@ -934,12 +935,7 @@ func (g *Generator) createFileFromTemplate(path, templateContent string, data in
 	if err != nil {
 		return err
 	}
-	defer func(file *os.File) {
-		err := file.Close()
-		if err != nil {
-
-		}
-	}(file)
+	defer file.Close()
 
 	return tmpl.Execute(file, data)
 }

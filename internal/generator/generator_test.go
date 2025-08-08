@@ -92,12 +92,7 @@ func TestGenerator_Generate(t *testing.T) {
 			if err != nil {
 				t.Fatalf("Failed to create temp dir: %v", err)
 			}
-			defer func(path string) {
-				err := os.RemoveAll(path)
-				if err != nil {
-
-				}
-			}(tempDir)
+			defer os.RemoveAll(tempDir)
 
 			projectPath := filepath.Join(tempDir, "test-project")
 
@@ -134,12 +129,7 @@ func TestGenerator_createDir(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer func(path string) {
-		err := os.RemoveAll(path)
-		if err != nil {
-
-		}
-	}(tempDir)
+	defer os.RemoveAll(tempDir)
 
 	gen := &Generator{
 		Config: ProjectConfig{
@@ -165,12 +155,7 @@ func TestGenerator_createFile(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed to create temp dir: %v", err)
 	}
-	defer func(path string) {
-		err := os.RemoveAll(path)
-		if err != nil {
-
-		}
-	}(tempDir)
+	defer os.RemoveAll(tempDir)
 
 	gen := &Generator{
 		Config: ProjectConfig{
